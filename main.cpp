@@ -16,15 +16,13 @@ void onResize(int w, int h)
 /* ----------------------------------------------------------------------------------------------------------------- */
 int cnt;
 /* ----------------------------------------------------------------------------------------------------------------- */
-/* colors, which are used to draw
- */
+// colors, which are used to draw
 /* ----------------------------------------------------------------------------------------------------------------- */
 GLfloat r;      // red
 GLfloat g;      // green
 GLfloat b;      // blue
 /* ----------------------------------------------------------------------------------------------------------------- */
-/* inicializuje hodnoty globalnich promennych
- */
+// initialize global variables
 /* ----------------------------------------------------------------------------------------------------------------- */
 void initValues()
 {
@@ -33,9 +31,7 @@ void initValues()
   b = double(rand() % 100) / 100;
 }
 /* ----------------------------------------------------------------------------------------------------------------- */
-/*
- * postupny prechod barev
- */
+// continuous transition of colors
 /* ----------------------------------------------------------------------------------------------------------------- */
 void transition()
 {
@@ -43,7 +39,7 @@ void transition()
   short sign = rand() % 2;
 
   if(cnt != 0)
-    cnt = rand() % 50;      // 49 ruznych odstinu maximalne
+    cnt = rand() % 50;      // 49 different shades max
 
   if(r >= 1.0 || r < 0)     // tady by chtelo asi uvazovat nejakou konstantu kvuli neukoncenemu desetinnemu rozvoji
     r = double(rand() % 100) / 100;
@@ -57,8 +53,7 @@ void transition()
   cnt--;
 }
 /* ----------------------------------------------------------------------------------------------------------------- */
-/* obnovi hodnoty globalnich promennych
- */
+// resets global variables
 /* ----------------------------------------------------------------------------------------------------------------- */
 void updateValues()
 {
@@ -91,9 +86,8 @@ void updateValues()
     b = double(rand() % 100) / 100;
 }
 /* ----------------------------------------------------------------------------------------------------------------- */
-/* zobrazeni ctverce
- * od bodu x a y s velikosti size
- */
+// display a square
+// from point [x,y] with length size
 /* ----------------------------------------------------------------------------------------------------------------- */
 void square(int x, int y, int size)
 {
@@ -103,13 +97,12 @@ void square(int x, int y, int size)
   glVertex2i(x, y + size);
 }
 /* ----------------------------------------------------------------------------------------------------------------- */
-/* zobrazeni sloupce ctvercu
- * od bodu x a y
- * pocet ctvercu - count
- * delim_size - mezery mezi ctverci
- * block_size - velikost jednotlivych ctvercu
- * mask - 8 bitovy int obsahujici 0 a 1, kterymi se maskuje
- */
+// display a column of squares
+// from point [x,y]
+// number of squares - count
+// spaces between squares - delim_size
+// size of squares - block_size
+// 8 bit int used (containing 0 or 1) for masking to conditionally display - mask
 /* ----------------------------------------------------------------------------------------------------------------- */
 void column(int x, int y, int count, int delim_size, 
             int block_size, uint8_t mask)
@@ -129,8 +122,8 @@ void preved(uint8_t & desitky, uint8_t & jednotky,
 /* -------------------------------------------------------------------------------------------------------- */
 void disp_clock()
 {
-  glClearColor(0.0, 0.0, 0.0, 0.0);           // nastaveni mazaci barvy na cernou
-  glClear(GL_COLOR_BUFFER_BIT);               // vymazani bitovych rovin barvoveho bufferu
+  glClearColor(0.0, 0.0, 0.0, 0.0);
+  glClear(GL_COLOR_BUFFER_BIT);
   int size = std::min(glutGet(GLUT_WINDOW_HEIGHT), glutGet(GLUT_WINDOW_WIDTH));
   int delim_size = size / 70;           // magicka konstanta
   //int block_size = size / 4.5;          // magicka konstanta
@@ -173,15 +166,18 @@ void disp_clock()
   glutPostRedisplay();
 }
 /* ----------------------------------------------------------------------------------------------------------------- */
+// close the program on escape key
+/* ----------------------------------------------------------------------------------------------------------------- */
 void onKeyboard(unsigned char key, int x, int y)
 {
   if (key == 27) // escape key
       exit(0);
 }
 /* ----------------------------------------------------------------------------------------------------------------- */
+// main
+/* ----------------------------------------------------------------------------------------------------------------- */
 int main(int argc, char * argv[])
 {
-
   srand(unsigned(time(NULL)));
 
   initValues();
