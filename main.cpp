@@ -113,12 +113,16 @@ void column(int x, int y, int count, int delim_size,
   }
 }
 /* -------------------------------------------------------------------------------------------------------- */
-void preved(uint8_t & desitky, uint8_t & jednotky, 
+// convert units
+/* -------------------------------------------------------------------------------------------------------- */
+void preved(uint8_t & tens, uint8_t & unites,
             int time_units)
 {
-  desitky  = (time_units / 10);
-  jednotky = (time_units % 10);  
+  tens = (time_units / 10);
+  units = (time_units % 10);
 }
+/* -------------------------------------------------------------------------------------------------------- */
+// display function
 /* -------------------------------------------------------------------------------------------------------- */
 void disp_clock()
 {
@@ -141,7 +145,7 @@ void disp_clock()
   
   uint8_t desitky_sec, sec, desitky_min, min, desitky_hod, hod;
 
-  /* zacatek smycky */
+  /* begin loop */
 
   time (&rawtime);
   timeinfo = localtime (&rawtime);
@@ -160,8 +164,7 @@ void disp_clock()
   
   usleep(120000);
 
-  glEnd();                                    // konec vykreslovani trojuhelniku
-  //glFlush();                                  // provedeni a vykresleni zmen
+  glEnd();
   glutSwapBuffers();
   glutPostRedisplay();
 }
