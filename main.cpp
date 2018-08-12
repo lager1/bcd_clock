@@ -115,7 +115,7 @@ void column(int x, int y, int count, int delim_size,
 /* -------------------------------------------------------------------------------------------------------- */
 // convert units
 /* -------------------------------------------------------------------------------------------------------- */
-void preved(uint8_t & tens, uint8_t & unites,
+void preved(uint8_t & tens, uint8_t & units,
             int time_units)
 {
   tens = (time_units / 10);
