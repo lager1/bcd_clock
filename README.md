@@ -8,7 +8,9 @@ TODO
 
 ## Dependencies
 
-TODO
+(debian package names)
+- libglfw3-dev
+- libglew-dev
 
 # Demo
 
